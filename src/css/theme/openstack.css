@@ -47,7 +47,7 @@ body {
 
 .reveal code {
   text-align: left;
-  font-family: monospace;
+  font-family: "Hack", monospace;
 }
 
 .reveal pre code {
@@ -59,6 +59,7 @@ body {
   word-wrap: normal;
   background: #3F3F3F;
   color: #DCDCDC;
+  font-family: "Hack", monospace;
 }
 
 .reveal ul li {
