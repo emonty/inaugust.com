@@ -88,7 +88,21 @@ for(i=0; i<big_providers.length; ++i) {
 
 }
 
-for(i=0; i<small_providers.length; ++i) {
+  $("#graph-container").append($(new Image()).addClass('graph').graphite({
+      from: "-72hours",
+      width: 885,
+      height: 495,
+      bgcolor: 'ffffff',
+      fgcolor: '000000',
+      areaMode: 'stacked',
+      yMax: '40',
+      title: "Blue Box nodes launched",
+      target: [
+         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.bluebox*.ready), '1h'), 'Ready'), '00ff22')",
+         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.bluebox*.error.*), '1h'), 'Error'), 'ff0000')"
+      ]
+  }));
+
   $("#graph-container").append($(new Image()).addClass('graph').graphite({
       from: "-72hours",
       width: 885,
@@ -97,14 +111,12 @@ for(i=0; i<small_providers.length; ++i) {
       fgcolor: '000000',
       areaMode: 'stacked',
       yMax: '160',
-      title: small_providers[i] + " nodes launched",
+      title: "OVH nodes launched",
       target: [
-         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider." + small_providers[i] + "*.ready), '1h'), 'Ready'), '00ff22')",
-         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider." + small_providers[i] + "*.error.*), '1h'), 'Error'), 'ff0000')"
+         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.ovh*.ready), '1h'), 'Ready'), '00ff22')",
+         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.ovh*.error.*), '1h'), 'Error'), 'ff0000')"
       ]
   }));
-
-}
 
 for(i=0; i<jobs.length; ++i) {
   $("#graph-container").append($(new Image()).addClass('graph').graphite({
