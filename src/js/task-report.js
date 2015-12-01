@@ -38,6 +38,7 @@ for(i=0; i<tasks.length; ++i) {
       fgcolor: '000000',
       lineMode: 'connected',
       vtitle: 'Time in Seconds',
+      yMax: '10',
       title: tasks[i],
       target: [
           "alias(scale(averageSeries(stats.timers.nodepool.task.hpcloud-b*." + tasks[i] + "Task.mean), '0.001'), 'HP')",
