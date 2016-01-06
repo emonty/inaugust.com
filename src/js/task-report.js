@@ -111,7 +111,7 @@ for(i=0; i<big_providers.length; ++i) {
       bgcolor: 'ffffff',
       fgcolor: '000000',
       areaMode: 'stacked',
-      yMax: '160',
+      yMax: '400',
       title: "OVH nodes launched",
       target: [
          "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.ovh*.ready), '1h'), 'Ready'), '00ff22')",
