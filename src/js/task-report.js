@@ -96,11 +96,26 @@ for(i=0; i<big_providers.length; ++i) {
       bgcolor: 'ffffff',
       fgcolor: '000000',
       areaMode: 'stacked',
-      yMax: '40',
+      yMax: '60',
       title: "Blue Box nodes launched",
       target: [
          "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.bluebox*.ready), '1h'), 'Ready'), '00ff22')",
          "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.bluebox*.error.*), '1h'), 'Error'), 'ff0000')"
+      ]
+  }));
+
+  $("#graph-container").append($(new Image()).addClass('graph').graphite({
+      from: "-72hours",
+      width: 885,
+      height: 495,
+      bgcolor: 'ffffff',
+      fgcolor: '000000',
+      areaMode: 'stacked',
+      yMax: '60',
+      title: "Internap nodes launched",
+      target: [
+         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.internap*.ready), '1h'), 'Ready'), '00ff22')",
+         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.internap*.error.*), '1h'), 'Error'), 'ff0000')"
       ]
   }));
 
@@ -116,21 +131,6 @@ for(i=0; i<big_providers.length; ++i) {
       target: [
          "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.ovh*.ready), '1h'), 'Ready'), '00ff22')",
          "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.ovh*.error.*), '1h'), 'Error'), 'ff0000')"
-      ]
-  }));
-
-  $("#graph-container").append($(new Image()).addClass('graph').graphite({
-      from: "-72hours",
-      width: 885,
-      height: 495,
-      bgcolor: 'ffffff',
-      fgcolor: '000000',
-      areaMode: 'stacked',
-      yMax: '20',
-      title: "Internap nodes launched",
-      target: [
-         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.internap*.ready), '1h'), 'Ready'), '00ff22')",
-         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.internap*.error.*), '1h'), 'Error'), 'ff0000')"
       ]
   }));
 
