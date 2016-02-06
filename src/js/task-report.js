@@ -37,7 +37,7 @@ for(i=0; i<tasks.length; ++i) {
       fgcolor: '000000',
       lineMode: 'connected',
       vtitle: 'Time in Seconds',
-      yMax: '2',
+      yMax: '3',
       title: tasks[i],
       target: [
           "alias(scale(averageSeries(stats.timers.nodepool.task.bluebox-sjc1." + tasks[i] + "Task.mean), '0.001'), 'BB')",
@@ -59,7 +59,7 @@ for(i=0; i<float_tasks.length; ++i) {
       fgcolor: '000000',
       lineMode: 'connected',
       vtitle: 'Time in Seconds',
-      yMax: '2',
+      yMax: '3',
       title: float_tasks[i],
       target: [
           "alias(scale(averageSeries(stats.timers.nodepool.task.bluebox-sjc1." + float_tasks[i] + "Task.mean), '0.001'), 'BB')",
