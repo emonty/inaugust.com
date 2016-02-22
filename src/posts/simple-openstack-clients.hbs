@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Simple OpenStack access with os-client-config</title>
+    <meta name="description" content="Easy consumption of OpenStack Clouds" />
+  </head>
+  <body>
+    <p>Simple things should be simple, and nowhere is that more true than in
+    constructing objects to interface with clouds. What you wnat to do is just
+    interact with the cloud - what you often are required to do is generate
+    sequences of object constructions because there are a bunch of things you
+    <em>might</em> have wanted to do.</p>
+
+    <p>In the spirit of making the simple things simple, we recently added a
+    couple of simple helper factory functions to
+    <a href='http://docs.openstack.org/developer/os-client-config/'>
+      os-client-config</a>: One to create Client objects, and one to create
+    mounted Session objects. Both functions fully support the breadth of
+    config options afforded by os-client-config, including environment
+    variables, config files and command line options.</p>
+
+    <p>Examples are probably best</p>
+
+    <h3>Client Library Client Objects</h3>
+
+    <p>Make a nova client object that uses env vars for auth info:</p>
+
+    <pre><code>
+client = os_client_config.make_client('compute')
+    </code></pre>
+
+    <p>Make a glance client object for the cloud named 'mtvexx' in my
+    clouds.yaml file:</p>
+
+    <pre><code>
+client = os_client_config.make_client('image', cloud='mtvxx')
+    </code></pre>
+
+    <p>Make a neutron client by passing in all of the values directly:</p>
+
+    <pre><code>
+client = os_client_config.make_client(
+    'network',
+    auth_url=OS_AUTH_URL, username=OS_USERNAME,
+    password=OS_PASSWORD, project_name=OS_PROJECT_NAME,
+    region_name=OS_REGION_NAME)
+    </code></pre>
+
+    <p>Make a barbican client from env vars with all the standard arguments
+    passed on the comand line:</p>
+
+    <pre><code>
+import argparse
+client = os_client_config.make_client(
+    'key-manager', options=argparse.ArgumentParser())
+    </code></pre>
+
+    <p>That likely covers most of the common end-user use cases with using
+    OpenStack Client Libraries. If you need more flexibility, you can always
+    create an os-client-config CloudConfig object and call
+    get_legacy_client, but I'm a big believer in one step instead of three
+    if you can get away with it:</p>
+
+    <pre><code>
+config = os_client_config.OpenStackConfig()
+cloud_config = config.get_one_cloud(cloud='vexxhost')
+client = cloud_config.get_legacy_client('compute')
+    </code></pre>
+
+    <h3>Mounted Keystone Session</h3>
+
+    <p>What if what you want to do is make some direct REST calls to an
+    OpenStack service, but you want to be able to do env vars or argparse or
+    clouds.yaml files to configure your authentication?</p>
+
+    <p>Well - you're in luck!</p>
+
+    <p>Make a Session object for nova that uses env vars for auth info:</p>
+
+    <pre><code>
+client = os_client_config.session_client('compute')
+    </code></pre>
+
+    <p>That will get you a keystoneauth Session object that has been "mounted" on the compute service. So you can do this:</p>
+
+    <pre><code>
+response = session.get('/servers')
+server_list = response.json()['servers']
+    </code></pre>
+
+    <p>The same argument sequence used for <em>make_client</em> works for
+    <em>session_client</em>.
+
+    <p>Make a glance Session object for the cloud named 'mtvexx' in my
+    clouds.yaml file:</p>
+
+    <pre><code>
+session = os_client_config.session_client('image', cloud='mtvxx')
+    </code></pre>
+
+    <p>Make a neutron Session object by passing in all of the values
+    directly:</p>
+
+    <pre><code>
+session = os_client_config.session_client(
+    'network',
+    auth_url=OS_AUTH_URL, username=OS_USERNAME,
+    password=OS_PASSWORD, project_name=OS_PROJECT_NAME,
+    region_name=OS_REGION_NAME)
+    </code></pre>
+
+    <p>Make a barbican Session object from env vars with all the standard
+    arguments passed on the comand line:</p>
+
+    <pre><code>
+import argparse
+session = os_client_config.session_client(
+    'key-manager', options=argparse.ArgumentParser())
+    </code></pre>
+
+    <p>Do it all without syntactic help:</p>
+
+    <pre><code>
+config = os_client_config.OpenStackConfig()
+cloud_config = config.get_one_cloud(cloud='vexxhost')
+session = cloud_config.get_session_client('compute')
+    </code></pre>
+
+</body>
+</html>
