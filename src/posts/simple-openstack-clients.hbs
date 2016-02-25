@@ -81,7 +81,7 @@ client = cloud_config.get_legacy_client('compute')
     <p>Make a Session object for nova that uses env vars for auth info:</p>
 
     <pre><code>
-client = os_client_config.session_client('compute')
+session = os_client_config.session_client('compute')
     </code></pre>
 
     <p>That will get you a keystoneauth Session object that has been "mounted" on the compute service. So you can do this:</p>
