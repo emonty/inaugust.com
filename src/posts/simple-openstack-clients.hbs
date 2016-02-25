@@ -41,9 +41,9 @@ client = os_client_config.make_client('image', cloud='mtvxx')
     <pre><code>
 client = os_client_config.make_client(
     'network',
-    auth_url=OS_AUTH_URL, username=OS_USERNAME,
-    password=OS_PASSWORD, project_name=OS_PROJECT_NAME,
-    region_name=OS_REGION_NAME)
+    auth_url='https://example.com', username='my-user',
+    password='awesome-password', project_name='my-project',
+    region_name='the-best-region')
     </code></pre>
 
     <p>Make a barbican client from env vars with all the standard arguments
@@ -104,9 +104,9 @@ session = os_client_config.session_client('image', cloud='mtvxx')
     <pre><code>
 session = os_client_config.session_client(
     'network',
-    auth_url=OS_AUTH_URL, username=OS_USERNAME,
-    password=OS_PASSWORD, project_name=OS_PROJECT_NAME,
-    region_name=OS_REGION_NAME)
+    auth_url='https://example.com', username='my-user',
+    password='awesome-password', project_name='my-project',
+    region_name='the-best-region')
     </code></pre>
 
     <p>Make a barbican Session object from env vars with all the standard
