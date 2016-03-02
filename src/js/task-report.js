@@ -38,13 +38,14 @@ for(i=0; i<tasks.length; ++i) {
       fgcolor: '000000',
       lineMode: 'connected',
       vtitle: 'Time in Seconds',
-      yMax: '3',
+      yMax: '7',
       title: tasks[i],
       target: [
           "alias(scale(averageSeries(stats.timers.nodepool.task.bluebox-sjc1." + tasks[i] + "Task.mean), '0.001'), 'BB')",
           "alias(scale(averageSeries(stats.timers.nodepool.task.ovh-gra1." + tasks[i] + "Task.mean), '0.001'), 'OVH')",
           "alias(scale(averageSeries(stats.timers.nodepool.task.rax-*." + tasks[i] + "Task.mean), '0.001'), 'RAX')",
           "alias(scale(averageSeries(stats.timers.nodepool.task.internap-*." + tasks[i] + "Task.mean), '0.001'), 'INAP')",
+          "alias(scale(averageSeries(stats.timers.nodepool.task.vexx*." + tasks[i] + "Task.mean), '0.001'), 'VEXX')",
       ]
   }));
 
@@ -110,6 +111,21 @@ for(i=0; i<big_providers.length; ++i) {
       fgcolor: '000000',
       areaMode: 'stacked',
       yMax: '100',
+      title: "Vexxhost nodes launched",
+      target: [
+         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.vexx*.ready), '1h'), 'Ready'), '00ff22')",
+         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.vexx*.error.*), '1h'), 'Error'), 'ff0000')"
+      ]
+  }));
+
+  $("#graph-container").append($(new Image()).addClass('graph').graphite({
+      from: "-72hours",
+      width: 885,
+      height: 495,
+      bgcolor: 'ffffff',
+      fgcolor: '000000',
+      areaMode: 'stacked',
+      yMax: '100',
       title: "Internap nodes launched",
       target: [
          "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.internap*.ready), '1h'), 'Ready'), '00ff22')",
@@ -151,5 +167,6 @@ $("#graph-container").append($(new Image()).addClass('graph').graphite({
         "alias(scale(averageSeries(stats.timers.nodepool.launch.provider.ovh-gra1.ready.mean), '0.000016'), 'OVH')",
         "alias(scale(averageSeries(stats.timers.nodepool.launch.provider.rax-*.ready.mean), '0.000016'), 'RAX')",
         "alias(scale(averageSeries(stats.timers.nodepool.launch.provider.internap-*.ready.mean), '0.000016'), 'INAP')",
+        "alias(scale(averageSeries(stats.timers.nodepool.launch.provider.vexx*.ready.mean), '0.000016'), 'VEXX')",
     ]
 }));
