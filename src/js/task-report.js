@@ -149,6 +149,7 @@ for(i=0; i<jobs.length; ++i) {
           "alias(scale(averageSeries(stats.timers.nodepool.job." + jobs[i] + ".master.*.ovh-gra1.runtime.mean), '0.000016'), 'OVH')",
           "alias(scale(averageSeries(stats.timers.nodepool.job." + jobs[i] + ".master.*.rax-*.runtime.mean), '0.000016'), 'RAX')",
           "alias(scale(averageSeries(stats.timers.nodepool.job." + jobs[i] + ".master.*.internap-*.runtime.mean), '0.000016'), 'INAP')",
+          "alias(scale(averageSeries(stats.timers.nodepool.job." + jobs[i] + ".master.*.vexx*.runtime.mean), '0.000016'), 'VEXX')",
       ]
   }));
 }
