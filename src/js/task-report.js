@@ -46,6 +46,7 @@ for(i=0; i<tasks.length; ++i) {
           "alias(scale(averageSeries(stats.timers.nodepool.task.rax-*." + tasks[i] + "Task.mean), '0.001'), 'RAX')",
           "alias(scale(averageSeries(stats.timers.nodepool.task.internap-*." + tasks[i] + "Task.mean), '0.001'), 'INAP')",
           "alias(scale(averageSeries(stats.timers.nodepool.task.vexx*." + tasks[i] + "Task.mean), '0.001'), 'VEXX')",
+          "alias(scale(averageSeries(stats.timers.nodepool.task.osic*." + tasks[i] + "Task.mean), '0.001'), 'OSIC')",
       ]
   }));
 
@@ -65,6 +66,7 @@ for(i=0; i<float_tasks.length; ++i) {
       title: float_tasks[i],
       target: [
           "alias(scale(averageSeries(stats.timers.nodepool.task.bluebox-sjc1." + float_tasks[i] + "Task.mean), '0.001'), 'BB')",
+          "alias(scale(averageSeries(stats.timers.nodepool.task.osic-cloud1." + float_tasks[i] + "Task.mean), '0.001'), 'OSIC')",
       ]
   }));
 
@@ -126,6 +128,21 @@ for(i=0; i<big_providers.length; ++i) {
       fgcolor: '000000',
       areaMode: 'stacked',
       yMax: '100',
+      title: "OSIC nodes launched",
+      target: [
+         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.osic*.ready), '1h'), 'Ready'), '00ff22')",
+         "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.osic*.error.*), '1h'), 'Error'), 'ff0000')"
+      ]
+  }));
+
+  $("#graph-container").append($(new Image()).addClass('graph').graphite({
+      from: "-72hours",
+      width: 885,
+      height: 495,
+      bgcolor: 'ffffff',
+      fgcolor: '000000',
+      areaMode: 'stacked',
+      yMax: '100',
       title: "Internap nodes launched",
       target: [
          "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.internap*.ready), '1h'), 'Ready'), '00ff22')",
@@ -150,6 +167,7 @@ for(i=0; i<jobs.length; ++i) {
           "alias(scale(averageSeries(stats.timers.nodepool.job." + jobs[i] + ".master.*.rax-*.runtime.mean), '0.000016'), 'RAX')",
           "alias(scale(averageSeries(stats.timers.nodepool.job." + jobs[i] + ".master.*.internap-*.runtime.mean), '0.000016'), 'INAP')",
           "alias(scale(averageSeries(stats.timers.nodepool.job." + jobs[i] + ".master.*.vexx*.runtime.mean), '0.000016'), 'VEXX')",
+          "alias(scale(averageSeries(stats.timers.nodepool.job." + jobs[i] + ".master.*.osic*.runtime.mean), '0.000016'), 'OSIC')",
       ]
   }));
 }
@@ -169,5 +187,6 @@ $("#graph-container").append($(new Image()).addClass('graph').graphite({
         "alias(scale(averageSeries(stats.timers.nodepool.launch.provider.rax-*.ready.mean), '0.000016'), 'RAX')",
         "alias(scale(averageSeries(stats.timers.nodepool.launch.provider.internap-*.ready.mean), '0.000016'), 'INAP')",
         "alias(scale(averageSeries(stats.timers.nodepool.launch.provider.vexx*.ready.mean), '0.000016'), 'VEXX')",
+        "alias(scale(averageSeries(stats.timers.nodepool.launch.provider.osic*.ready.mean), '0.000016'), 'OSIC')",
     ]
 }));
