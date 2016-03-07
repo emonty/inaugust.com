@@ -127,7 +127,7 @@ for(i=0; i<big_providers.length; ++i) {
       bgcolor: 'ffffff',
       fgcolor: '000000',
       areaMode: 'stacked',
-      yMax: '100',
+      yMax: '400',
       title: "OSIC nodes launched",
       target: [
          "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.osic*.ready), '1h'), 'Ready'), '00ff22')",
@@ -142,7 +142,7 @@ for(i=0; i<big_providers.length; ++i) {
       bgcolor: 'ffffff',
       fgcolor: '000000',
       areaMode: 'stacked',
-      yMax: '100',
+      yMax: '200',
       title: "Internap nodes launched",
       target: [
          "color(alias(summarize(sumSeries(stats_counts.nodepool.launch.provider.internap*.ready), '1h'), 'Ready'), '00ff22')",
