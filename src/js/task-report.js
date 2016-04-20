@@ -3,13 +3,13 @@ tasks = [
     'ServerCreate',
     'ServerDelete',
     'ServerList',
-    'ServerGet',
-    'PortList',
-    'NetworkList',
-    'SubnetList'
+    'ServerGet'
 ];
 
 float_tasks = [
+    'PortList',
+    'NetworkList',
+    'SubnetList',
     'NeutronFloatingIPList',
     'NeutronFloatingIPCreate',
     'NeutronFloatingIPDelete'
