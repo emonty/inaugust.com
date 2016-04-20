@@ -43,12 +43,12 @@ for(i=0; i<tasks.length; ++i) {
       yMax: '7',
       title: tasks[i],
       target: [
-          "alias(scale(averageSeries(stats.timers.nodepool.task.bluebox-sjc1." + tasks[i] + "Task.mean), '0.001'), 'BB')",
-          "alias(scale(averageSeries(stats.timers.nodepool.task.ovh-gra1." + tasks[i] + "Task.mean), '0.001'), 'OVH')",
-          "alias(scale(averageSeries(stats.timers.nodepool.task.rax-*." + tasks[i] + "Task.mean), '0.001'), 'RAX')",
-          "alias(scale(averageSeries(stats.timers.nodepool.task.internap-*." + tasks[i] + "Task.mean), '0.001'), 'INAP')",
-          "alias(scale(averageSeries(stats.timers.nodepool.task.vexx*." + tasks[i] + "Task.mean), '0.001'), 'VEXX')",
-          "alias(scale(averageSeries(stats.timers.nodepool.task.osic*." + tasks[i] + "Task.mean), '0.001'), 'OSIC')",
+          "alias(scale(averageSeries(stats.timers.nodepool.task.bluebox-sjc1." + tasks[i] + ".mean), '0.001'), 'BB')",
+          "alias(scale(averageSeries(stats.timers.nodepool.task.ovh-gra1." + tasks[i] + ".mean), '0.001'), 'OVH')",
+          "alias(scale(averageSeries(stats.timers.nodepool.task.rax-*." + tasks[i] + ".mean), '0.001'), 'RAX')",
+          "alias(scale(averageSeries(stats.timers.nodepool.task.internap-*." + tasks[i] + ".mean), '0.001'), 'INAP')",
+          "alias(scale(averageSeries(stats.timers.nodepool.task.vexx*." + tasks[i] + ".mean), '0.001'), 'VEXX')",
+          "alias(scale(averageSeries(stats.timers.nodepool.task.osic*." + tasks[i] + ".mean), '0.001'), 'OSIC')",
       ]
   }));
 
@@ -67,8 +67,8 @@ for(i=0; i<float_tasks.length; ++i) {
       yMax: '3',
       title: float_tasks[i],
       target: [
-          "alias(scale(averageSeries(stats.timers.nodepool.task.bluebox-sjc1." + float_tasks[i] + "Task.mean), '0.001'), 'BB')",
-          "alias(scale(averageSeries(stats.timers.nodepool.task.osic-cloud1." + float_tasks[i] + "Task.mean), '0.001'), 'OSIC')",
+          "alias(scale(averageSeries(stats.timers.nodepool.task.bluebox-sjc1." + float_tasks[i] + ".mean), '0.001'), 'BB')",
+          "alias(scale(averageSeries(stats.timers.nodepool.task.osic-cloud1." + float_tasks[i] + ".mean), '0.001'), 'OSIC')",
       ]
   }));
 
