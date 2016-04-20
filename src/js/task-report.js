@@ -1,16 +1,18 @@
 $.fn.graphite.defaults.url = "http://graphite.openstack.org/render/";
 tasks = [
-    'CreateServer',
-    'DeleteServer',
-    'ListServers'
+    'ServerCreate',
+    'ServerDelete',
+    'ServerList',
+    'ServerGet',
+    'PortList',
+    'NetworkList',
+    'SubnetList'
 ];
 
 float_tasks = [
-    'AddFloatingIP',
-    'CreateFloatingIP',
-    'DeleteFloatingIP',
-    'GetFloatingIP',
-    'ListFloatingIPs'
+    'NeutronFloatingIPList',
+    'NeutronFloatingIPCreate',
+    'NeutronFloatingIPDelete'
 ]
 
 big_providers = [
