@@ -8,8 +8,6 @@ tasks = [
 
 float_tasks = [
     'PortList',
-    'NetworkList',
-    'SubnetList',
     'NeutronFloatingIPList',
     'NeutronFloatingIPCreate',
     'NeutronFloatingIPDelete'
